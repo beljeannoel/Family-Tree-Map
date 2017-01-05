@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="main.css"/>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body onload="load(), checkCookie(), initMap()">
+<div id="header">
+    Family Name
+</div>
+<div id="control_panel">
+    <div class="section">
+        Main Menu
+    </div>
+    <button id="add_child">
+        Add Child
+    </button>
+    <button id="remove_node">
+        Remove Node
+    </button>
+    <button id="zoom_in">
+        Zoom In
+    </button>
+    <button id="zoom_out">
+        Zoom Out
+    </button>
+    <div class="section">
+        Family Info
+    </div>
+    <div id="information_panel">
+
+    </div>
+</div>
+<div id="divider">
+
+</div>
+<div id="main">
+    <canvas id="canvas"></canvas>
+</div>
+<div id="map"></div>
+  <div>
+    <input id="address" type="textbox" value="Miami, FL">
+    <input type="button" value="Encode" onclick="codeAddress()">
+  </div>
+<script src="tree.js">//view</script>
+<script src="main.js">//controller and model</script>
+<script>
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+$(document).ready(function(){
+    $("div").children("button").css({"background-color": "#E1B776","box-shadow": "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(2,1,0,0.19)" });
+});
+
+
+ var geocoder;
+  var map;
+  function initMap() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(28.761, -80.192);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
+
+  function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+	  
+	  
+    
+    
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+    async defer></script>
+</body>
+</html>

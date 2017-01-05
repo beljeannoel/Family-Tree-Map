@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <title>FAMILY TREE LOCALE</title>
+<style>
+body{
+
+  background: url(familyTree2.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#container {
+    width:100%;
+    text-align:center;
+	height:150px;
+
+}
+
+#left {
+    float:left;
+    width:10%;
+}
+
+
+
+#right {
+    float:right;
+    width:90%;
+}
+a:link    {color:#E1B776; background-color:transparent; text-decoration:none}
+a:visited {color:yellow; background-color:transparent; text-decoration:strike}
+a:hover   {color:brown; background-color:transparent; text-decoration:none}
+a:active  {color:yellow; background-color:transparent; }
+
+.parent{
+position:fixed;
+bottom:0px;
+width:100%; //width should be 100%
+}
+
+.childRight{
+width:70%; //min width should give to center the div.
+margin:0px auto; //here it will make center
+
+}
+
+</style>
+</head>
+<body>
+
+
+	
+<div id="container">
+  <div id="left">
+	<div class="w3-container w3-center w3-animate-fading">
+		<img src="familytreeLogo.png" alt="logo" style="width:250px;height:150px;align:right-side">
+	</div>
+  </div>
+	<div id="right"></div>
+  
+</div>
+<div class="parent">
+<div class="childRight">
+</div>
+<div class="childLeft">
+C<div class="w3-container w3-center w3-animate-right">
+  <a href="familyTree.html"><h1>Click to Create Your FAMILY TREE LOCALE</h1><p>Check it out!</p></a>
+  
+</div>
+</div>
+</div>
+</body>
+</html>
+
